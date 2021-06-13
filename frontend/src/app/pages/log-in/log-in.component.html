@@ -1,0 +1,52 @@
+<div class="container">
+
+    <app-hero-greeting greeting="Log in to Mapster"></app-hero-greeting>
+
+    <div class="columns">
+
+        <div class="column">
+
+            <div class="box">
+
+                <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input #emailInput class="input has-background-light" type="email" placeholder="Email input">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="" class="label">Password</label>
+                    <div class="control has-icons-left">
+                        <input #passwordInput class="input has-background-light" type="password" placeholder="*******"
+                            required>
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="field pt-4 pb-4">
+                    <button class="button is-medium is-fullwidth is-success"
+                        (click)="btnLoginOnAction(emailInput.value, passwordInput.value)">
+                        Log in
+                    </button>
+                </div>
+
+                <div>
+                    Don't have an account? <a href="/signup">Sign up now</a>.
+                </div>
+
+            </div>
+        </div>
+
+        <div class="column" id="right-pic">
+            <figure class="image is-256x256">
+                <img src="../../../assets/images/dancing.png" alt="Italian Trulli">
+            </figure>
+        </div>
+    </div>
+</div>
