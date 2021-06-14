@@ -33,15 +33,12 @@ interface Action {
       state('default', style({ transform: 'rotate(0deg)' })),
       state('rotatedLeft', style({ transform: 'rotate(-45deg)' })),
       state('rotateRight',style({ transform: 'rotate(45deg)' })),
-      transition('rotatedRight => rotatedLeft', animate('1500ms ease-out')),
-      transition('rotatedLeft => rotatedRight', animate('400ms ease-in'))
+      transition('default => rotatedLeft', animate('400ms ease-in')),
+      //transition('rotatedRight => rotatedLeft', animate('1500ms ease-out')),
+      transition('rotatedLeft => default', animate('400ms ease-out'))
     ])
   ]
-  
 })
-
-
-
 export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private static scalingFactor = 1;
@@ -64,12 +61,16 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('middleColumn', { static: true }) middleColumnRef: ElementRef;
 
-  state: string = 'default' || 'rotatedLeft' || 'rotatedRight';
+  state: string = 'default';
 
   rotate() {
+    console.log(MainComponent.currentShapeIndex)
+    console.log(this.shapes[MainComponent.currentShapeIndex])
     if(this.shapes[MainComponent.currentShapeIndex].type === 'line')
     {
+      console.log(this.state)
       if(this.state === 'default'){
+
           this.state = 'rotatedLeft';
         }
         else if(this.state === 'rotatedLeft'){
@@ -167,16 +168,16 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    MainComponent.subscriptions.push(this.docServ.getDocs().subscribe((docs: any) => {
-      this.docs = docs;
+    MainComponent.subscriptions.push(this.docServ.getDocs().subscribe((docs: object) => {
+      this.docs = docs as Document[];
     }));
 
     MainComponent.subscriptions.push(this.route.params.subscribe((params: Params) => {
       if (params.docId) {
         this.docId = params.docId;
 
-        MainComponent.subscriptions.push(this.docServ.getShapes(params.docId).subscribe((shapes: any) => {
-          this.shapes = shapes;
+        MainComponent.subscriptions.push(this.docServ.getShapes(params.docId).subscribe((shapes: object) => {
+          this.shapes = shapes as Shape[];
         }));
       }
     }));

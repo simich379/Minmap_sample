@@ -16,7 +16,6 @@ import { EditDocumentComponent } from './pages/edit-document/edit-document.compo
 import { ShareDocumentComponent } from './pages/share-document/share-document.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +26,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HeroGreetingComponent,
     EditDocumentComponent,
     ShareDocumentComponent,
-    
   ],
   imports: [
     BrowserModule,

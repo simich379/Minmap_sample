@@ -174,7 +174,8 @@
             <div *ngFor="let shape of shapes; let i = index; trackBy: trackById" [ngClass]="shape.type" [ngStyle]="{'background-color': shape.backgroundColor ? shape.backgroundColor : '#ffffff',
                              'color': shape.textColor ? shape.textColor : '#ffffff',
                              'border-color': shape.label ? shape.borderColor : '#ffffff',
-                             'border-top-color': shape.borderColor}"
+                             'border-top-color': shape.borderColor}" 
+                [@rotatedState]='this.state'
                 [currentPosition]="{ x: shape.translateX, y: shape.translateY }" appMovable tabindex="0"
                 (click)="setCurrentShapeIndex(i); updateLabel()">
                 {{ shape.type === 'ellipse' ? shape.label : '' }}
@@ -183,7 +184,6 @@
                 <div class="resizer sw"></div>
                 <div class="resizer se"></div>
             </div>
-
         </div>
 
         <div id="showRight" class="is-hidden">
@@ -261,15 +261,13 @@
                                     <input #fillColor type="color" />
                                 </div>
                             </div>
-                        </ul>
-                    </div>
-                    <div class="columns"> 
-                        <div class="column">
-                            <button  (click)="rotate()">Rotate</button>
-                            <figure class="image is-16x32">
-                                    <img [@rotatedState]='state' >
-                            </figure>
+                        <div class="columns"> 
+                            <div class="column">
+                                <button  (click)="this.rotate()">Rotate
+                                </button>    
+                            </div>
                         </div>
+                        </ul>
                     </div>
                 </aside>
             </div>
